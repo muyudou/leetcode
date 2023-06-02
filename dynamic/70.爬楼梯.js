@@ -26,3 +26,19 @@ var climbStairs = function(n) {
     }
     return dp2;
 };
+
+// 一步一个台阶，两个台阶，三个台阶，.......，直到 m个台阶。问有多少种不同的方法可以爬到楼顶呢？
+var climbStairsm = function(n, m) {
+    const dp = new Array(n + 1).fill(0);
+    dp[0] = 1;
+    for (let j = 1; j <= n; j++) {
+        for (let i = 1; i <= m; i++) {
+            if (j >= i) {
+                dp[j] += dp[j - i];
+            }
+        }
+    }
+    return dp[n];
+};
+
+climbStairsm(4, 2)
