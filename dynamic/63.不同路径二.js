@@ -1,5 +1,5 @@
 /**
- * https://leetcode.cn/problems/unique-paths-ii/
+ * https://leetcode.cn/problems/unique-paths-ii/0o
  * @param {number[][]} obstacleGrid
  * @return {number}
  */
