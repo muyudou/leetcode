@@ -35,3 +35,25 @@ var binaryTreePaths = function(root) {
     backtracking(root);
     return result;
 };
+
+var binaryTreePaths = function(root) {
+    const result = [];
+    const path = [];
+    const getPath = root => {
+        path.push(root.val);
+        if (!root.left && !root.right) {
+            result.push(path.join('->'));
+            return;
+        }
+        if (root.left) {
+            getPath(root.left);
+            path.pop();
+        }
+        if (root.right) {
+            getPath(root.right);
+            path.pop();
+        }
+    }
+    getPath(root);
+    return result;
+};

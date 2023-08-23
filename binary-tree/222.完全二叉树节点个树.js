@@ -46,3 +46,32 @@ var countNodes = function(root) {
    const rightCount = countNodes(root.right);
    return leftCount + rightCount + 1;
 };
+
+var countNodes = function(root) {
+    if (!root) {
+        return 0;
+    }
+    return countNodes(root.left) + countNodes(root.right) + 1;
+}
+
+var countNodes = function(root) {
+    if (!root) {
+        return 0;
+    }
+    let leftDepth = 1;
+    let leftNode = root.left;
+    while (leftNode) {
+        leftDepth++;
+        leftNode = leftNode.left;
+    }
+    let rightDepth = 1;
+    let rightNode = root.right;
+    while (rightNode) {
+        rightDepth++;
+        rightNode = rightNode.right;
+    }
+    if (leftDepth === rightDepth) {
+        return Math.pow(2, leftDepth) - 1;
+    }
+    return countNodes(root.left) + countNodes(root.right) + 1;
+}

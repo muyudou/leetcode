@@ -45,3 +45,27 @@ var levelOrder = function(root) {
     }
     return result;
 };
+
+var levelOrder = function(root) {
+    if (!root) {
+        return [];
+    }
+    const result = [];
+    const queue = [root];
+    while (queue.length) {
+        const len = queue.length;
+        const res = [];
+        for (let i = 0; i < len; i++) {
+            const node = queue.shift();
+            res.push(node.val);
+            if (node.left) {
+                queue.push(node.left);
+            }
+            if (node.right) {
+                queue.push(node.right);
+            }
+        }
+        result.push(res);
+    }
+    return result;
+}

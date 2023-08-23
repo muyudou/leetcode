@@ -31,3 +31,20 @@ var isSymmetric = function(root) {
     }
     return compare(root.left, root.right);
 };
+
+var isSymmetric = function(root) {
+    if (!root) {
+        return true;
+    }
+    const isEqual = (left, right) => {
+        if (!left && !right) {
+            return true;
+        } else if ((left && !right) || (!left && right)) {
+            return false;
+        } else if (left.val !== right.val) {
+            return false;
+        }
+        return isEqual(left.left, right.right) && isEqual(left.right, right.left)
+    };
+    return isEqual(root.left, root.right);
+}
