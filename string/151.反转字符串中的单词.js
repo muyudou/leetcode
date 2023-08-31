@@ -41,3 +41,46 @@ var reverseWords = function(s) {
     }
     return arr.slice(0, len).join('')
 };
+
+
+function strip(s) {
+    let len = s.length;
+    let start = 0;
+    let end = len - 1;
+    for (let i = 0; i < len; i++) {
+        if (s[i] === ' ') {
+            start++;
+        } else {
+            break;
+        }
+    }
+    for (let i = len - 1; i >= 0; i--) {
+        if (s[i] === ' ') {
+            end--;
+        } else {
+            break;
+        }
+    }
+    const arr = s.split('').slice(start, end + 1);
+    let j = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] !== ' ' || (i > 0 && arr[i] === ' ' && arr[i-1] !== ' ')) {
+            arr[j++] = arr[i];
+        }
+    }
+    return arr.slice(0, j).join('')
+}
+
+function reverseWords(s) {
+    const arr = reverseWords(s);
+    const len = arr.length - 1;
+    reverseString(arr, 0, len);
+    let start = 0;
+    for (let i = 0; i < len; i++) {
+        if (arr[i] === ' ') {
+            reverseString(arr, start, i - 1);
+            start = i + 1;
+        }
+    }
+    return arr.join(' ');
+}

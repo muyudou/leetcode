@@ -24,3 +24,24 @@ var reverseList = function(head) {
     return pre
         
 }
+
+var reverseList = function(head) {
+    if (!head || !head.next) {
+        return head;
+    }
+    const newHead = reverseList(head.next);
+    head.next.next = head;
+    return newHead;
+}
+
+var reverseList = function(head) {
+    let pre = null;
+    let cur = head;
+    while (cur) {
+        let next = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = next;
+    }
+    return pre;
+}

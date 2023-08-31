@@ -36,3 +36,25 @@ var pathSum = function(root, targetSum) {
     getPath(root, targetSum);
     return result;
 };
+
+var pathSum = function(root, targetSum) {
+    let result = [];
+    let path = [];
+    const traversal = (root, sum) => {
+        path.push(root.val);
+        if (!root.left && !root.right && root.val === sum) {
+            result.push(path.slice());
+            return;
+        }
+        if (root.left) {
+            traversal(root.left, sum - root.val);
+            path.pop();
+        }
+        if (root.right) {
+            traversal(root.right, sum - root.val);
+            path.pop();
+        }
+    };
+    traversal(root, targetSum);
+    return result;
+};

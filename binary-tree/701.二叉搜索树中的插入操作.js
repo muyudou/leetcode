@@ -24,3 +24,16 @@ var insertIntoBST = function(root, val) {
     }
     return root;
 };
+
+var insertIntoBST = function(root, val) {
+    if (!root) {
+        const node = new TreeNode(val);
+        return node;
+    }
+    if (val < root.val) {
+        root.left = insertIntoBST(root.left, val);
+    } else {
+        root.right = insertIntoBST(root.right, val);
+    }
+    return root;
+};

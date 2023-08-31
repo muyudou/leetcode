@@ -21,3 +21,36 @@ var removeElements = function(head, val) {
     }
     return dummy.next
 };
+
+var removeElements = function(head, val) {
+    const dummy = new ListNode();
+    dummy.next = head;
+    let pre = dummy;
+    let cur = dummy.next;
+    while(cur) {
+        if (cur.val === val) {
+            pre.next = cur.next;
+            cur = cur.next;
+        } else {
+            pre = pre.next;
+            cur = cur.next;
+        }
+    }
+    return dummy.next;
+};
+
+var removeElements = function(head, val) {
+    const dummy = new ListNode();
+    dummy.next = head;
+    let cur = dummy;
+    while(cur.next) {
+        if (cur.next.val === val) {
+            cur.next = cur.next.next;
+        } else {
+            cur = cur.next;
+        }
+    }
+    return dummy.next;
+}
+
+

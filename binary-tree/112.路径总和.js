@@ -33,3 +33,19 @@ var hasPathSum = function(root, targetSum) {
     }
     return false;
 };
+
+var hasPathSum = function(root, targetSum) {
+    if (!root) {
+        return false;
+    }
+    if (!root.left && !root.right && targetSum === root.val) {
+        return true;
+    }
+    if (traversal(root.left, targetSum - root.val)) {
+        return true;
+    }
+    if (traversal(root.right, targetSum - root.val)) {
+        return true;
+    }
+    return false;
+};

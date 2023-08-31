@@ -33,3 +33,18 @@ var buildTree = function(inorder, postorder) {
     root.right = buildTree(inorder.slice(mid+1, len), postorder.slice(mid, len - 1));
     return root;
 };
+
+var buildTree = function(inorder, postorder) {
+    if (!inorder.length) {
+        return null
+    }
+    if (inorder.length === 1) {
+        return new TreeNode(inorder[0]);
+    }
+    const rootVal = postorder[postorder.length - 1];
+    const root = new TreeNode(rootVal);
+    const rootIndex = inorder.indexOf(rootVal, inorder, postorder);
+    root.left = buildTree(inorder.slice(0, rootIndex), postorder.slice(0, rootIndex));
+    root.right = buildTree(inorder.slice(rootIndex + 1), postorder.slice(rootIndex, -1));
+    return root;
+};

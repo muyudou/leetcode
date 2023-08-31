@@ -30,3 +30,31 @@ var isValid = function(s) {
     }
     return stack.length === 0;
 };
+
+var isValid = function(s) {
+    const stack = [];
+    for (let i = 0; i < s.length; i++) {
+        const char = s[i];
+        switch (char) {
+            case '(':
+                stack.push(')');
+                break;
+            case '{':
+                stack.push('}');
+                break;
+            case '[':
+                stack.push(']');
+                break;
+            case ')':
+            case '}':
+            case ']':
+                const top = stack.pop();
+                if (top !== char) {
+                    return false;
+                }
+            default:
+                break;
+        }
+    }
+    return stack.length === 0;
+}

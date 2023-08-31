@@ -32,3 +32,21 @@ var findBottomLeftValue = function(root) {
     find(root, 0);
     return node.val;
 };
+
+var findBottomLeftValue = function(root) {
+    let maxDepth = -Infinity;
+    let leftValue;
+    const traversal = (root, depth) => {
+        if (!root) {
+            return depth;
+        }
+        if (depth > maxDepth) {
+            leftValue = root.val;
+            maxDepth = depth;
+        }
+        traversal(root.left, depth + 1);
+        traversal(root.right, depth + 1);
+    };
+    traversal(root, 0);
+    return leftValue;
+};

@@ -46,3 +46,42 @@ var maxSlidingWindow = function(nums, k) {
     }
     return result;
 };
+
+
+class Queue2 {
+    constructor() {
+        this.queue = [];
+    }
+    pop(val) {
+        if (!this.queue.length) {
+            return;
+        }
+        const top = this.queue[0];
+        if (top === val) {
+            this.queue.shift();
+        }
+    }
+    push(val) {
+        while(this.queue[this.queue.length - 1] < val) {
+            this.queue.pop();
+        }
+        this.queue.push(val);
+    }
+    front() {
+        return this.queue && this.queue[0];
+    }
+}
+var maxSlidingWindow = function(nums, k) {
+    const result = [];
+    const q = new Queue2();
+    for (let i = 0; i < k; i++) {
+        q.push(nums[i]);
+    }
+    result.push(q.front());
+    for (let i = k; i < nums.length; i++) {
+        q.pop(nums[i - k]);
+        q.push(nums[i]);
+        result.push(q.front());
+    }
+    return result;
+};
